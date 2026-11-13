@@ -1,0 +1,18 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function signedIn() { return request.auth != null; }
+    function owns(uid) { return signedIn() && request.auth.uid == uid; }
+
+    // Private records: only the signed-in owner can read/write their own data.
+    match /users/{uid}/{document=**} {
+      allow read, create, update, delete: if owns(uid);
+    }
+
+    // No public access. Family sharing rules will be added only after
+    // implementing verified membership and per-record sharing permissions.
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

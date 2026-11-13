@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="bn">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0f766e">
+  <title>MY FINANCE</title>
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="top">
+    <div><div class="brand">MY FINANCE</div><small id="user-label">ব্যক্তিগত ও পারিবারিক হিসাব</small></div>
+    <button id="lang-btn" class="ghost">EN</button>
+  </header>
+  <main>
+    <section id="login-panel" class="panel">
+      <h1>আপনার হিসাব, আপনার নিয়ন্ত্রণে</h1>
+      <p>Google দিয়ে নিরাপদে প্রবেশ করুন।</p>
+      <button id="login-btn" class="primary">Google দিয়ে Login</button>
+      <p id="login-status" class="muted"></p>
+    </section>
+    <section id="app-panel" hidden>
+      <div class="welcome"><div><span class="muted">স্বাগতম</span><h2 id="display-name">ব্যবহারকারী</h2></div><button id="logout-btn" class="ghost">Logout</button></div>
+      <div class="stats">
+        <article><small>এই মাসের আয়</small><strong id="income-total">৳0</strong></article>
+        <article><small>এই মাসের খরচ</small><strong id="expense-total">৳0</strong></article>
+        <article><small>এই মাসের অবশিষ্ট</small><strong id="balance-total">৳0</strong></article>
+      </div>
+      <nav class="tabs">
+        <button class="tab active" data-tab="entry">এন্ট্রি</button>
+        <button class="tab" data-tab="history">ইতিহাস</button>
+        <button class="tab" data-tab="savings">সঞ্চয়</button>
+        <button class="tab" data-tab="loans">লোন</button>
+      </nav>
+      <section id="tab-entry" class="panel tab-panel">
+        <h3>নতুন লেনদেন</h3>
+        <form id="transaction-form">
+          <label>লেনদেনের ধরন<select id="type"><option value="income">আয়</option><option value="family_expense">পারিবারিক খরচ</option><option value="personal_expense">ব্যক্তিগত খরচ</option></select></label>
+          <label>ক্যাটাগরি<input id="category" required maxlength="50" placeholder="যেমন: বেতন, খাবার"></label>
+          <label>পরিমাণ (৳)<input id="amount" required type="number" min="0.01" step="0.01"></label>
+          <label>তারিখ<input id="date" required type="date"></label>
+          <label>বিবরণ<input id="note" maxlength="250" placeholder="ঐচ্ছিক"></label>
+          <button class="primary" type="submit">সেভ করুন</button>
+          <p id="form-status" class="muted"></p>
+        </form>
+      </section>
+      <section id="tab-history" class="panel tab-panel" hidden><h3>লেনদেনের ইতিহাস</h3><div id="history-list"></div></section>
+      <section id="tab-savings" class="panel tab-panel" hidden>
+        <h3>সঞ্চয়ের লক্ষ্য</h3>
+        <form id="saving-form">
+          <label>লক্ষ্যের নাম<input id="saving-name" required maxlength="60" placeholder="জরুরি সঞ্চয়"></label>
+          <label>লক্ষ্যমাত্রা (৳)<input id="saving-target" type="number" min="1" required></label>
+          <label>বর্তমান জমা (৳)<input id="saving-current" type="number" min="0" value="0" required></label>
+          <button class="primary">লক্ষ্য যোগ করুন</button>
+        </form><div id="saving-list"></div>
+      </section>
+      <section id="tab-loans" class="panel tab-panel" hidden>
+        <h3>লোনের হিসাব</h3>
+        <form id="loan-form">
+          <label>যার কাছে / প্রতিষ্ঠান<input id="loan-name" required maxlength="60"></label>
+          <label>মোট ঋণ (৳)<input id="loan-total" type="number" min="1" required></label>
+          <label>মাসিক কিস্তি (৳)<input id="loan-installment" type="number" min="0" value="0" required></label>
+          <label>পরিশোধ হয়েছে (৳)<input id="loan-paid" type="number" min="0" value="0" required></label>
+          <button class="primary">লোন যোগ করুন</button>
+        </form><div id="loan-list"></div>
+      </section>
+      <p class="privacy-note">এই প্রাথমিক সংস্করণে রেকর্ডগুলো আপনার নিজের অ্যাকাউন্টের অধীনে রাখা হয়। পরিবারের সঙ্গে শেয়ার করার সুবিধা পরের ধাপে যোগ হবে।</p>
+    </section>
+  </main>
+  <footer>MY FINANCE · BDT (৳)</footer>
+  <script type="module" src="app.js"></script>
+</body>
+</html>
