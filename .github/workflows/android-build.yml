@@ -5,7 +5,7 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
 
     steps:
       - name: Checkout
@@ -22,15 +22,18 @@ jobs:
           distribution: temurin
           java-version: 17
 
-      - name: Install Capacitor
+      - name: Install dependencies
         run: |
           npm init -y
           npm install @capacitor/core @capacitor/cli @capacitor/android
 
-      - name: Setup Android
+      - name: Configure Capacitor
         run: |
           npx cap init "MY FINANCE" "com.gofornext.myfinance" --web-dir=.
-          npx cap add android
+          node -e "const fs=require('fs'); const p=require('./capacitor.config.json'); p.webDir='.'; fs.writeFileSync('capacitor.config.json',JSON.stringify(p,null,2))"
+
+      - name: Add Android
+        run: npx cap add android
 
       - name: Build APK
         run: |
