@@ -3,8 +3,7 @@ import { getAuth, GoogleAuthProvider, signInWithPopup, signInWithRedirect, getRe
 import { getFirestore, collection, addDoc, getDocs, query, orderBy, serverTimestamp, doc, deleteDoc } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-firestore.js";
 
 // Firebase Console > Project settings > Your apps > Web app > Config
-const firebaseConfig = {
-  apiKey: firebaseConfig = {
+const firebaseConfig ={
   apiKey: "AIzaSyA-fir_5x_ZtGd2nUHGSsaZMOzHbeJCHMc",
   authDomain: "my-finance-360a0.firebaseapp.com",
   projectId: "my-finance-360a0",
