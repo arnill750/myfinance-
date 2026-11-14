@@ -4,15 +4,15 @@ import { getFirestore, collection, addDoc, getDocs, query, orderBy, serverTimest
 
 // Firebase Console > Project settings > Your apps > Web app > Config
 const firebaseConfig = {
-  apiKey: "PASTE_YOUR_API_KEY",
-  authDomain: "PASTE_YOUR_AUTH_DOMAIN",
-  projectId: "PASTE_YOUR_PROJECT_ID",
-  storageBucket: "PASTE_YOUR_STORAGE_BUCKET",
-  messagingSenderId: "PASTE_YOUR_MESSAGING_SENDER_ID",
-  appId: "PASTE_YOUR_APP_ID",
-  measurementId: "PASTE_YOUR_MEASUREMENT_ID"
+  apiKey: firebaseConfig = {
+  apiKey: "AIzaSyA-fir_5x_ZtGd2nUHGSsaZMOzHbeJCHMc",
+  authDomain: "my-finance-360a0.firebaseapp.com",
+  projectId: "my-finance-360a0",
+  storageBucket: "my-finance-360a0.firebasestorage.app",
+  messagingSenderId: "931633935421",
+  appId: "1:931633935421:web:bdf88de5a5279124cd2654",
+  measurementId: "G-QNDBRXHW54"
 };
-
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getFirestore(app);
