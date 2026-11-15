@@ -17,13 +17,13 @@ jobs:
           distribution: temurin
           java-version: 17
       - name: Install dependencies
-        run: |
-          npm init -y
-          npm install @capacitor/core @capacitor/cli @capacitor/android
-      - name: Sync Capacitor
-        run: npx cap sync android
+        run: npm install
       - name: Build Web
         run: npm run build
+      - name: Add Android Platform
+        run: npx cap add android
+      - name: Sync Capacitor
+        run: npx cap sync android
       - name: Build APK
         run: |
           cd android
