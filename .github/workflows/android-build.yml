@@ -1,46 +1,38 @@
 name: Build MY FINANCE APK
-
 on:
   workflow_dispatch:
-
 jobs:
   build:
     runs-on: ubuntu-24.04
-
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
           node-version: 20
-
       - name: Setup Java
         uses: actions/setup-java@v4
         with:
           distribution: temurin
           java-version: 17
-
       - name: Install dependencies
         run: |
           npm init -y
           npm install @capacitor/core @capacitor/cli @capacitor/android
-
       - name: Configure Capacitor
         run: |
           npx cap init "MY FINANCE" "com.gofornext.myfinance" --web-dir=.
-          node -e "const fs=require('fs'); const p=require('./capacitor.config.json'); p.webDir='.'; fs.writeFileSync('capacitor.config.json',JSON.stringify(p,null,2))"
-‘npm run build'
+          node -e 'const fs=require("fs"); const p=require("./capacitor.config.json"); p.webDir="."; fs.writeFileSync("./capacitor.config.json", JSON.stringify(p,null,2))'
+      - name: Build Web
+        run: npm run build
       - name: Add Android
         run: npx cap add android
-
       - name: Build APK
         run: |
           cd android
           chmod +x gradlew
           ./gradlew assembleDebug
-
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
